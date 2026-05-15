@@ -137,7 +137,5 @@ dependencies {
     annotationProcessor libs.glide.compiler
     coreLibraryDesugaring libs.desugar
 
-//
-    implementation libs.nextlib.media3ext
-    implementation libs.bundles.media3
+    implementation libs.checker.qual
 }
