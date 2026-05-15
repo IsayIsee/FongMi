@@ -51,8 +51,7 @@ zxingAndroidEmbedded = "4.3.0"
 zxingCore = "3.5.4"
 
 #
-media3 = "1.10.0"
-nextlib = "1.10.0-0.12.1"
+checkerqual = "3.42.0"
 
 [libraries]
 annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
@@ -112,15 +111,7 @@ zxing-android-embedded = { group = "com.journeyapps", name = "zxing-android-embe
 zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxingCore" }
 
 #
-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
-media3-exoplayer = { group = "androidx.media3", name = "media3-exoplayer", version.ref = "media3" }
-media3-exoplayer-hls = { group = "androidx.media3", name = "media3-exoplayer-hls", version.ref = "media3" }
-media3-exoplayer-dash = { group = "androidx.media3", name = "media3-exoplayer-dash", version.ref = "media3" }
-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
-media3-ui = { group = "androidx.media3", name = "media3-ui", version.ref = "media3" }
-media3-datasource-okhttp = { group = "androidx.media3", name = "media3-datasource-okhttp", version.ref = "media3" }
-
-nextlib-media3ext = { group = "io.github.anilbeesetti", name = "nextlib-media3ext", version.ref = "nextlib" }
+checker-qual = { group = "org.checkerframework", name = "checker-qual", version.ref = "checkerqual" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -131,6 +122,3 @@ chaquo-python = { id = "com.chaquo.python", version.ref = "python" }
 glide = ["glide", "glide-annotations", "glide-avif-integration", "glide-okhttp3-integration"]
 jupnp = ["org-jupnp", "org-jupnp-android", "org-jupnp-support"]
 okhttp = ["okhttp", "okhttp-dnsoverhttps", "okhttp-logging-interceptor"]
-
-#
-media3 = ["media3-common", "media3-exoplayer", "media3-exoplayer-hls", "media3-exoplayer-dash", "media3-session", "media3-ui", "media3-datasource-okhttp"]
