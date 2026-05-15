@@ -129,4 +129,12 @@ public class Setting {
         if (color == -1) return 0;
         return color != 0 ? color : getWallColor();
     }
+
+    public static String getAcceleration() {
+        return Prefers.getString("accelerationUrl");
+    }
+
+    public static void putAcceleration(String accelerationUrl) {
+        Prefers.put("accelerationUrl", accelerationUrl);
+    }
 }
