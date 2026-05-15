@@ -13,7 +13,6 @@ android {
         targetSdk libs.versions.targetSdk.get().toInteger()
         python {
             version = "3.10"
-            buildPython "D:\\Miniconda3\\envs\\py310\\python.exe"
             pip {
                 install("-r", "requirements.txt")
             }
