@@ -428,19 +428,12 @@ public class PlayerManager implements ParseCallback {
             PlayerEngine.ErrorAction action = engine.handleError(e);
             if (action == PlayerEngine.ErrorAction.RECOVERED) {
                 setDanmakus(spec.getDanmakus());
-                return;
-            }
-            if (++retry > 2) {
+            } else if (action == PlayerEngine.ErrorAction.FATAL) {
                 callback.onError(engine.getErrorMessage(e));
-                return;
-            }
-            switch (action) {
-                case DECODE:
-                    toggleDecode();
-                    break;
-                case FATAL:
-                    callback.onError(engine.getErrorMessage(e));
-                    break;
+            } else if (++retry > 1) {
+                callback.onError(engine.getErrorMessage(e));
+            } else {
+                toggleDecode();
             }
         }
     };

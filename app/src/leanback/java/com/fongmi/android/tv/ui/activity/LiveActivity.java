@@ -160,7 +160,7 @@ public class LiveActivity extends PlaybackActivity implements GroupAdapter.OnCli
         mObserveEpg = this::setEpg;
         mObserveUrl = this::start;
         mHides = new ArrayList<>();
-        mR0 = this::setActivated;
+        mR0 = this::setSelected;
         mR1 = this::hideControl;
         mR2 = this::setTraffic;
         mR3 = this::hideInfo;
@@ -216,9 +216,9 @@ public class LiveActivity extends PlaybackActivity implements GroupAdapter.OnCli
     private void setVideoView() {
         setScale(LiveSetting.getScale());
         findViewById(R.id.timeBar).setNextFocusUpId(R.id.config);
-        mBinding.control.action.invert.setActivated(LiveSetting.isInvert());
-        mBinding.control.action.across.setActivated(LiveSetting.isAcross());
-        mBinding.control.action.change.setActivated(LiveSetting.isChange());
+        mBinding.control.action.invert.setSelected(LiveSetting.isInvert());
+        mBinding.control.action.across.setSelected(LiveSetting.isAcross());
+        mBinding.control.action.change.setSelected(LiveSetting.isChange());
     }
 
     private void setDecode() {
@@ -342,13 +342,13 @@ public class LiveActivity extends PlaybackActivity implements GroupAdapter.OnCli
         resetPass();
     }
 
-    private void setActivated() {
+    private void setSelected() {
         mChannelAdapter.setSelected(mChannel);
         notifyItemChanged(mBinding.channel, mChannelAdapter);
         fetch();
     }
 
-    private void setActivated(EpgData item) {
+    private void setSelected(EpgData item) {
         mEpgDataAdapter.setSelected(item);
         notifyItemChanged(mBinding.epgData, mEpgDataAdapter);
     }
@@ -407,17 +407,17 @@ public class LiveActivity extends PlaybackActivity implements GroupAdapter.OnCli
 
     private void onInvert() {
         LiveSetting.putInvert(!LiveSetting.isInvert());
-        mBinding.control.action.invert.setActivated(LiveSetting.isInvert());
+        mBinding.control.action.invert.setSelected(LiveSetting.isInvert());
     }
 
     private void onAcross() {
         LiveSetting.putAcross(!LiveSetting.isAcross());
-        mBinding.control.action.across.setActivated(LiveSetting.isAcross());
+        mBinding.control.action.across.setSelected(LiveSetting.isAcross());
     }
 
     private void onChange() {
         LiveSetting.putChange(!LiveSetting.isChange());
-        mBinding.control.action.change.setActivated(LiveSetting.isChange());
+        mBinding.control.action.change.setSelected(LiveSetting.isChange());
     }
 
     private void onChoose() {
@@ -666,7 +666,7 @@ public class LiveActivity extends PlaybackActivity implements GroupAdapter.OnCli
         } else if (mChannel.hasCatchup() || mChannel.isRtsp()) {
             mBinding.widget.title.setText(getString(R.string.detail_title, mChannel.getShow(), item.getTitle()));
             Notify.show(getString(R.string.play_ready, item.getTitle()));
-            setActivated(item);
+            setSelected(item);
             fetch(item);
         }
     }
@@ -792,7 +792,7 @@ public class LiveActivity extends PlaybackActivity implements GroupAdapter.OnCli
 
     @Override
     public void setLive(Live item) {
-        if (item.isActivated()) item.getGroups().clear();
+        if (item.isSelected()) item.getGroups().clear();
         LiveConfig.get().setHome(item);
         player().reset();
         player().clear();

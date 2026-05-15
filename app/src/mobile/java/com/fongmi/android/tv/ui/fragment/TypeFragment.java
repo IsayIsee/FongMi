@@ -170,7 +170,7 @@ public class TypeFragment extends BaseFragment implements CustomScroller.Callbac
     }
 
     public void setFilter(String key, Value value) {
-        if (value.isActivated()) mExtends.put(key, value.getV());
+        if (value.isSelected()) mExtends.put(key, value.getV());
         else mExtends.remove(key);
         onRefresh();
     }

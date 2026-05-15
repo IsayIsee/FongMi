@@ -218,9 +218,9 @@ public class LiveActivity extends PlaybackActivity implements CustomKeyDown.List
 
     private void setVideoView() {
         setScale(LiveSetting.getScale());
-        mBinding.control.action.invert.setActivated(LiveSetting.isInvert());
-        mBinding.control.action.across.setActivated(LiveSetting.isAcross());
-        mBinding.control.action.change.setActivated(LiveSetting.isChange());
+        mBinding.control.action.invert.setSelected(LiveSetting.isInvert());
+        mBinding.control.action.across.setSelected(LiveSetting.isAcross());
+        mBinding.control.action.change.setSelected(LiveSetting.isChange());
         mBinding.video.addOnLayoutChangeListener((view, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> mPiP.update(this, view));
     }
 
@@ -409,19 +409,19 @@ public class LiveActivity extends PlaybackActivity implements CustomKeyDown.List
     private void onInvert() {
         setR1Callback();
         LiveSetting.putInvert(!LiveSetting.isInvert());
-        mBinding.control.action.invert.setActivated(LiveSetting.isInvert());
+        mBinding.control.action.invert.setSelected(LiveSetting.isInvert());
     }
 
     private void onAcross() {
         setR1Callback();
         LiveSetting.putAcross(!LiveSetting.isAcross());
-        mBinding.control.action.across.setActivated(LiveSetting.isAcross());
+        mBinding.control.action.across.setSelected(LiveSetting.isAcross());
     }
 
     private void onChange() {
         setR1Callback();
         LiveSetting.putChange(!LiveSetting.isChange());
-        mBinding.control.action.change.setActivated(LiveSetting.isChange());
+        mBinding.control.action.change.setSelected(LiveSetting.isChange());
     }
 
     private void onDecode() {
@@ -827,7 +827,7 @@ public class LiveActivity extends PlaybackActivity implements CustomKeyDown.List
 
     @Override
     public void setLive(Live item) {
-        if (item.isActivated()) item.getGroups().clear();
+        if (item.isSelected()) item.getGroups().clear();
         LiveConfig.get().setHome(item);
         player().reset();
         player().clear();

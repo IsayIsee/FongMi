@@ -546,6 +546,7 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
     }
 
     private void setPlayer(Result result) {
+        if (isFinishing() || isDestroyed()) return;
         mQualityAdapter.addAll(result);
         setUseParse(result.shouldUseParse());
         mBinding.swipeLayout.setRefreshing(false);
@@ -564,8 +565,8 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
 
     @Override
     public void onItemClick(Flag item) {
-        if (item.isActivated()) return;
-        mFlagAdapter.setActivated(item);
+        if (item.isSelected()) return;
+        mFlagAdapter.setSelected(item);
         scrollToPosition(mBinding.flag, mFlagAdapter.getPosition());
         setEpisodeAdapter(item.getEpisodes());
         setQualityVisible(false);
@@ -616,8 +617,8 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
 
     private void seamless(Flag flag) {
         Episode episode = flag.find(mHistory.getVodRemarks(), getMark().isEmpty());
-        setQualityVisible(episode != null && episode.isActivated() && mQualityAdapter.getItemCount() > 1);
-        if (episode == null || episode.isActivated()) return;
+        setQualityVisible(episode != null && episode.isSelected() && mQualityAdapter.getItemCount() > 1);
+        if (episode == null || episode.isSelected()) return;
         mHistory.setVodRemarks(episode.getName());
         onItemClick(episode);
     }
@@ -705,14 +706,14 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
     private void checkNext(boolean notify) {
         setR1Callback();
         Episode item = mEpisodeAdapter.getNext();
-        if (!item.isActivated()) onItemClick(item);
+        if (!item.isSelected()) onItemClick(item);
         else if (notify) Notify.show(R.string.error_play_next);
     }
 
     private void checkPrev() {
         setR1Callback();
         Episode item = mEpisodeAdapter.getPrev();
-        if (!item.isActivated()) onItemClick(item);
+        if (!item.isSelected()) onItemClick(item);
         else Notify.show(R.string.error_play_prev);
     }
 
@@ -757,12 +758,12 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
 
     private void onRepeat() {
         player().setRepeatOne(!player().isRepeatOne());
-        mBinding.control.action.repeat.setActivated(player().isRepeatOne());
+        mBinding.control.action.repeat.setSelected(player().isRepeatOne());
     }
 
     @Override
     public void onRepeatModeChanged(int repeatMode) {
-        mBinding.control.action.repeat.setActivated(player().isRepeatOne());
+        mBinding.control.action.repeat.setSelected(player().isRepeatOne());
     }
 
     private void onScale() {
@@ -882,7 +883,7 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
     }
 
     private boolean shouldEnterFullscreen(Episode item) {
-        boolean enter = !isFullscreen() && item.isActivated();
+        boolean enter = !isFullscreen() && item.isSelected();
         if (enter) enterFullscreen();
         return enter;
     }

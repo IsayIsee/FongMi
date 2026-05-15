@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,6 +17,8 @@
         android:singleLine="true"
         android:textColor="?attr/colorOnSurface"
         android:textSize="14sp"
+        app:backgroundTint="@color/selector_button"
+        app:strokeColor="@color/selector_stroke"
         tools:text="https://fongmi.github.io/cat.json" />
 
     <androidx.appcompat.widget.AppCompatImageView

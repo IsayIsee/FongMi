@@ -86,8 +86,8 @@ public class SiteDialog extends BaseAlertDialog implements SiteAdapter.OnClickLi
         binding.mode.setOnClickListener(this::onMode);
         binding.select.setOnClickListener(v -> adapter.selectAll());
         binding.cancel.setOnClickListener(v -> adapter.cancelAll());
-        binding.search.setOnClickListener(v -> setType(v.isActivated() ? 0 : 1));
-        binding.change.setOnClickListener(v -> setType(v.isActivated() ? 0 : 2));
+        binding.search.setOnClickListener(v -> setType(v.isSelected() ? 0 : 1));
+        binding.change.setOnClickListener(v -> setType(v.isSelected() ? 0 : 2));
     }
 
     private void setRecyclerView() {
@@ -101,8 +101,8 @@ public class SiteDialog extends BaseAlertDialog implements SiteAdapter.OnClickLi
     }
 
     private void setType(int type) {
-        binding.search.setActivated(type == 1);
-        binding.change.setActivated(type == 2);
+        binding.search.setSelected(type == 1);
+        binding.change.setSelected(type == 2);
         binding.select.setClickable(type > 0);
         binding.cancel.setClickable(type > 0);
         adapter.setType(this.type = type);

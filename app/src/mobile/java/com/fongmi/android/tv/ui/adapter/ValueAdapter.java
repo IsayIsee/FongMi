@@ -40,12 +40,12 @@ public class ValueAdapter extends RecyclerView.Adapter<ValueAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Value item = mItems.get(position);
         holder.binding.text.setText(item.getN());
-        holder.binding.text.setActivated(item.isActivated());
+        holder.binding.text.setSelected(item.isSelected());
         holder.binding.text.setOnClickListener(v -> onItemClick(item));
     }
 
     private void onItemClick(Value value) {
-        for (Value item : mItems) item.setActivated(value);
+        for (Value item : mItems) item.setSelected(value);
         notifyItemRangeChanged(0, getItemCount());
         listener.setFilter(mKey, value);
     }

@@ -15,6 +15,7 @@ public class OkProxySelector extends ProxySelector {
 
     private final List<Proxy> proxy;
     private final ProxySelector system;
+    private boolean authSet;
 
     public OkProxySelector() {
         proxy = new CopyOnWriteArrayList<>();
@@ -23,12 +24,14 @@ public class OkProxySelector extends ProxySelector {
     }
 
     public synchronized void addAll(List<Proxy> items) {
+        if (items.isEmpty()) return;
         items.forEach(Proxy::init);
         proxy.addAll(items);
         proxy.sort(null);
     }
 
     public synchronized void clear() {
+        Authenticator.setDefault(null);
         proxy.clear();
     }
 

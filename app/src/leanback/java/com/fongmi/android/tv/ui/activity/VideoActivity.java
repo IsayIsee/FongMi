@@ -486,6 +486,7 @@ public class VideoActivity extends PlaybackActivity implements CustomKeyDownVod.
     }
 
     private void setPlayer(Result result) {
+        if (isFinishing() || isDestroyed()) return;
         mQualityAdapter.addAll(result);
         setUseParse(result.shouldUseParse());
         setQualityVisible(result.getUrl().isMulti());
@@ -503,8 +504,8 @@ public class VideoActivity extends PlaybackActivity implements CustomKeyDownVod.
 
     @Override
     public void onItemClick(Flag item) {
-        if (mFlagAdapter.getItemCount() == 0 || item.isActivated()) return;
-        mFlagAdapter.setActivated(item);
+        if (mFlagAdapter.getItemCount() == 0 || item.isSelected()) return;
+        mFlagAdapter.setSelected(item);
         mBinding.flag.setSelectedPosition(mFlagAdapter.indexOf(item));
         notifyItemChanged(mBinding.flag, mFlagAdapter);
         setEpisodeAdapter(item.getEpisodes());
@@ -521,8 +522,8 @@ public class VideoActivity extends PlaybackActivity implements CustomKeyDownVod.
 
     private void seamless(Flag flag) {
         Episode episode = flag.find(mHistory.getVodRemarks(), getMark().isEmpty());
-        setQualityVisible(episode != null && episode.isActivated() && mQualityAdapter.getItemCount() > 1);
-        if (episode == null || episode.isActivated()) return;
+        setQualityVisible(episode != null && episode.isSelected() && mQualityAdapter.getItemCount() > 1);
+        if (episode == null || episode.isSelected()) return;
         mHistory.setVodRemarks(episode.getName());
         onItemClick(episode);
     }
@@ -610,7 +611,7 @@ public class VideoActivity extends PlaybackActivity implements CustomKeyDownVod.
     }
 
     private boolean shouldEnterFullscreen(Episode item) {
-        boolean enter = !isFullscreen() && item.isActivated();
+        boolean enter = !isFullscreen() && item.isSelected();
         if (enter) enterFullscreen();
         return enter;
     }
@@ -659,12 +660,12 @@ public class VideoActivity extends PlaybackActivity implements CustomKeyDownVod.
 
     private void onRepeat() {
         player().setRepeatOne(!player().isRepeatOne());
-        mBinding.control.action.repeat.setActivated(player().isRepeatOne());
+        mBinding.control.action.repeat.setSelected(player().isRepeatOne());
     }
 
     @Override
     public void onRepeatModeChanged(int repeatMode) {
-        mBinding.control.action.repeat.setActivated(player().isRepeatOne());
+        mBinding.control.action.repeat.setSelected(player().isRepeatOne());
     }
 
     private void checkNext() {
@@ -683,13 +684,13 @@ public class VideoActivity extends PlaybackActivity implements CustomKeyDownVod.
 
     private void onNext(boolean notify) {
         Episode item = mEpisodeAdapter.getNext();
-        if (!item.isActivated()) onItemClick(item);
+        if (!item.isSelected()) onItemClick(item);
         else if (notify) Notify.show(mHistory.isRevPlay() ? R.string.error_play_prev : R.string.error_play_next);
     }
 
     private void onPrev(boolean notify) {
         Episode item = mEpisodeAdapter.getPrev();
-        if (!item.isActivated()) onItemClick(item);
+        if (!item.isSelected()) onItemClick(item);
         else if (notify) Notify.show(mHistory.isRevPlay() ? R.string.error_play_next : R.string.error_play_prev);
     }
 

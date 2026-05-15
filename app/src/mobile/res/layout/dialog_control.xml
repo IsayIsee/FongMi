@@ -78,7 +78,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
                 android:tag="0"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="預設" />
 
@@ -89,7 +89,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
                 android:tag="1"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="16:9" />
 
@@ -100,7 +100,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
                 android:tag="2"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="4:3" />
 
@@ -111,7 +111,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
                 android:tag="3"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="填充" />
 
@@ -121,7 +121,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_accent"
                 android:tag="4"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="裁剪" />
 
@@ -154,7 +154,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="EXO" />
 
@@ -164,7 +164,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="硬解" />
 
@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="片頭" />
 
@@ -184,7 +184,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/shape_accent"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 tools:text="片尾" />
 
@@ -194,7 +194,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_accent"
                 android:text="@string/play_title"
-                android:textColor="@color/control"
+                android:textColor="@color/selector_control"
                 android:textSize="14sp"
                 android:visibility="gone"
                 tools:visibility="visible" />
@@ -227,7 +227,7 @@
             android:background="@drawable/shape_accent"
             android:tag="3"
             android:text="@string/play_track_text"
-            android:textColor="@color/control"
+            android:textColor="@color/selector_control"
             android:textSize="14sp"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -240,7 +240,7 @@
             android:background="@drawable/shape_accent"
             android:tag="1"
             android:text="@string/play_track_audio"
-            android:textColor="@color/control"
+            android:textColor="@color/selector_control"
             android:textSize="14sp"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -252,7 +252,7 @@
             android:background="@drawable/shape_accent"
             android:tag="2"
             android:text="@string/play_track_video"
-            android:textColor="@color/control"
+            android:textColor="@color/selector_control"
             android:textSize="14sp"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -281,7 +281,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/shape_accent"
             android:text="@string/danmaku"
-            android:textColor="@color/control"
+            android:textColor="@color/selector_control"
             android:textSize="14sp"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -293,7 +293,7 @@
             android:layout_marginEnd="8dp"
             android:background="@drawable/shape_accent"
             android:text="@string/play_repeat"
-            android:textColor="@color/control"
+            android:textColor="@color/selector_control"
             android:textSize="14sp" />
 
         <com.google.android.material.textview.MaterialTextView
@@ -302,7 +302,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/shape_accent"
             android:text="@string/play_timer"
-            android:textColor="@color/control"
+            android:textColor="@color/selector_control"
             android:textSize="14sp" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>

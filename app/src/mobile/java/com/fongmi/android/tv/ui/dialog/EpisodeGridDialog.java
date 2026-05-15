@@ -95,7 +95,7 @@ public class EpisodeGridDialog extends BaseBottomSheetDialog {
 
     private void setCurrentPage() {
         for (int i = 0; i < episodes.size(); i++) {
-            if (episodes.get(i).isActivated()) {
+            if (episodes.get(i).isSelected()) {
                 binding.pager.setCurrentItem(i / itemCount);
                 break;
             }
