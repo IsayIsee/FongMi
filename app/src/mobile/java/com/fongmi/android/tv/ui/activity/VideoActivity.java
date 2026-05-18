@@ -354,6 +354,10 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
         mBinding.control.action.ending.setOnLongClickListener(view -> onEndingReset());
         mBinding.control.action.opening.setOnLongClickListener(view -> onOpeningReset());
         mBinding.video.setOnTouchListener((view, event) -> mKeyDown.onTouchEvent(event));
+        // 下方全屏图标
+        mBinding.control.scale.setOnClickListener(view -> enterFullscreen());
+        // 右边全屏图标
+        mBinding.control.right.rscale.setOnClickListener(view -> exitFullscreen());
         mBinding.control.action.getRoot().setOnTouchListener(this::onActionTouch);
         mBinding.swipeLayout.setOnRefreshListener(this::onSwipeRefresh);
     }
@@ -981,6 +985,7 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
         mBinding.control.back.setVisibility(isLock() ? View.GONE : View.VISIBLE);
         mBinding.control.top.setVisibility(isLock() ? View.GONE : View.VISIBLE);
         mBinding.control.getRoot().setVisibility(View.VISIBLE);
+        checkScaleIcon(); // 每次显示控制栏，都检查一下全屏图标状态
         setR1Callback();
     }
 
@@ -1624,6 +1629,8 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        // 屏幕旋转或状态改变时，立即调整两个按钮的显示/隐藏
+        checkScaleIcon();
         if (isAutoRotate() && isPort() && newConfig.orientation == Configuration.ORIENTATION_PORTRAIT && !isRotate() && !isLock()) exitFullscreen();
         if (isAutoRotate() && isPort() && newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) enterFullscreen();
         if (isFullscreen()) Util.hideSystemUI(this);
@@ -1675,5 +1682,19 @@ public class VideoActivity extends PlaybackActivity implements Clock.Callback, C
         mViewModel.getPlayer().removeObserver(mObservePlayer);
         mViewModel.getSearch().removeObserver(mObserveSearch);
         super.onDestroy();
+    }
+
+    private void checkScaleIcon() {
+        if (mBinding == null) return;
+
+        boolean isFull = isFullscreen();
+
+        // 非全屏时显示，全屏时隐藏
+        mBinding.control.scale.setVisibility(isFull ? View.GONE : View.VISIBLE);
+
+        // 全屏时显示，非全屏时隐藏
+        if (mBinding.control.right.rscale != null) {
+            mBinding.control.right.rscale.setVisibility(isFull ? View.VISIBLE : View.GONE);
+        }
     }
 }
