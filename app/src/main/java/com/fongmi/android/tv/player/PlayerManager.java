@@ -283,6 +283,10 @@ public class PlayerManager implements ParseCallback {
         stopParse();
     }
 
+    public void clearMediaItems() {
+        player.clearMediaItems();
+    }
+
     public boolean isRepeatOne() {
         return engine.isRepeatOne();
     }

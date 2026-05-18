@@ -1,5 +1,11 @@
 package com.fongmi.android.tv.setting;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
+
+import com.fongmi.android.tv.App;
 import com.github.catvod.utils.Prefers;
 
 public class Setting {
@@ -130,6 +136,9 @@ public class Setting {
         return color != 0 ? color : getWallColor();
     }
 
+    public static boolean hasFileManager() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && (new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + App.get().getPackageName())).resolveActivity(App.get().getPackageManager()) != null || new Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION).resolveActivity(App.get().getPackageManager()) != null);
+    
     public static String getAcceleration() {
         return Prefers.getString("accelerationUrl");
     }
