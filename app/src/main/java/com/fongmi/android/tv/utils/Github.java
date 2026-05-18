@@ -1,8 +1,10 @@
 package com.fongmi.android.tv.utils;
 
+import com.fongmi.android.tv.setting.Setting;
+
 public class Github {
 
-    public static final String URL = "https://raw.githubusercontent.com/FongMi/Release/fongmi";
+    public static final String URL = Setting.getAcceleration() + "https://raw.githubusercontent.com/IsayIsee/TVBoxOS-Build/master";
 
     private static String getUrl(String name) {
         return URL + "/apk/" + name;

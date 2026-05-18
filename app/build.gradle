@@ -136,4 +136,6 @@ dependencies {
     annotationProcessor libs.eventbus.annotation.processor
     annotationProcessor libs.glide.compiler
     coreLibraryDesugaring libs.desugar
+
+    implementation libs.checker.qual
 }

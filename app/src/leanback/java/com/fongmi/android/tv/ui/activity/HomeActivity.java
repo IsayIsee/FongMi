@@ -267,11 +267,17 @@ public class HomeActivity extends BaseActivity implements CustomTitleView.Listen
 
     private void setFunc() {
         List<Func> items = new ArrayList<>();
+        // 点播
         items.add(Func.create(R.string.home_vod));
+        // 直播
         if (LiveConfig.hasUrl()) items.add(Func.create(R.string.home_live));
+        // 搜索
         items.add(Func.create(R.string.home_search));
+        // 收藏
         items.add(Func.create(R.string.home_keep));
+        // 推送
         items.add(Func.create(R.string.home_push));
+        // 设置
         items.add(Func.create(R.string.home_setting));
         mFuncAdapter.setItems(items, new BaseDiffCallback<Func>());
     }
@@ -386,11 +392,17 @@ public class HomeActivity extends BaseActivity implements CustomTitleView.Listen
 
     @Override
     public void onItemClick(Func item) {
+        // 点击点播
         if (item.getResId() == R.string.home_vod) VodActivity.start(this, mResult);
+            // 点击直播
         else if (item.getResId() == R.string.home_live) LiveActivity.start(this);
+            // 点击收藏
         else if (item.getResId() == R.string.home_keep) KeepActivity.start(this);
+            // 点击推送
         else if (item.getResId() == R.string.home_push) PushActivity.start(this);
+            // 点击搜索
         else if (item.getResId() == R.string.home_search) SearchActivity.start(this);
+            // 点击设置
         else if (item.getResId() == R.string.home_setting) SettingActivity.start(this);
     }
 
