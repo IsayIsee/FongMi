@@ -299,6 +299,24 @@ public class PlayerManager implements ParseCallback {
         player.seekTo(time);
     }
 
+    public long getTextOffsetMs() {
+        if (player.isCommandAvailable(Player.COMMAND_GET_TEXT_OFFSET)) return player.getTextOffsetMs();
+        return 0;
+    }
+
+    public void setTextOffsetMs(long offsetMs) {
+        if (player.isCommandAvailable(Player.COMMAND_SET_TEXT_OFFSET)) player.setTextOffsetMs(offsetMs);
+    }
+
+    public long getAudioOffsetMs() {
+        if (player.isCommandAvailable(Player.COMMAND_GET_AUDIO_OFFSET)) return player.getAudioOffsetMs();
+        return 0;
+    }
+
+    public void setAudioOffsetMs(long offsetMs) {
+        if (player.isCommandAvailable(Player.COMMAND_SET_AUDIO_OFFSET)) player.setAudioOffsetMs(offsetMs);
+    }
+
     public void reset() {
         App.removeCallbacks(runnable);
         retry = 0;
