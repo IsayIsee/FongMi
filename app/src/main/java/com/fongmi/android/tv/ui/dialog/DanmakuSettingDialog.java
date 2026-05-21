@@ -12,6 +12,7 @@ import androidx.viewbinding.ViewBinding;
 
 import com.fongmi.android.tv.databinding.DialogDanmakuSettingBinding;
 import com.fongmi.android.tv.player.PlayerManager;
+import com.fongmi.android.tv.utils.ResUtil;
 import com.fongmi.android.tv.utils.Util;
 
 public final class DanmakuSettingDialog {
@@ -30,8 +31,8 @@ public final class DanmakuSettingDialog {
     public void show(FragmentActivity activity) {
         FragmentManager manager = activity.getSupportFragmentManager();
         for (Fragment fragment : manager.getFragments()) if (fragment instanceof BottomSheet || fragment instanceof SideSheet) return;
-        if (Util.isFullscreenLand(activity) || Util.isLeanback()) new SideSheet().player(player).show(manager, null);
-        else new BottomSheet().player(player).show(manager, null);
+        if (Util.isFullscreenLand(activity) || Util.isLeanback()) new SideSheet(player).show(manager, null);
+        else new BottomSheet(player).show(manager, null);
     }
 
     private static DialogDanmakuSettingBinding inflate(LayoutInflater inflater, ViewGroup container) {
@@ -41,11 +42,10 @@ public final class DanmakuSettingDialog {
     public static final class BottomSheet extends BaseBottomSheetDialog {
 
         private DialogDanmakuSettingBinding binding;
-        private PlayerManager player;
+        private final PlayerManager player;
 
-        BottomSheet player(PlayerManager player) {
+        BottomSheet(PlayerManager player) {
             this.player = player;
-            return this;
         }
 
         @Override
@@ -62,11 +62,15 @@ public final class DanmakuSettingDialog {
     public static final class SideSheet extends BaseSideSheetDialog {
 
         private DialogDanmakuSettingBinding binding;
-        private PlayerManager player;
+        private final PlayerManager player;
 
-        SideSheet player(PlayerManager player) {
+        SideSheet(PlayerManager player) {
             this.player = player;
-            return this;
+        }
+
+        @Override
+        protected int getWidth() {
+            return Math.min(ResUtil.dp2px(420), ResUtil.getScreenWidth() / 2);
         }
 
         @Override
