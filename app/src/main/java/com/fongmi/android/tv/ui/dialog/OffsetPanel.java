@@ -50,6 +50,8 @@ final class OffsetPanel {
     private void onReset(View view) {
         getSlider().setValue(0);
         getLabel().setText(format(0));
+        if (type == C.TRACK_TYPE_TEXT) player.setTextOffsetMs(0);
+        if (type == C.TRACK_TYPE_AUDIO) player.setAudioOffsetMs(0);
     }
 
     private void setupOffset(Slider slider, TextView label, long valueMs, LongConsumer setter) {

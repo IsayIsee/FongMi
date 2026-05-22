@@ -60,9 +60,10 @@ public class PlayerManager implements ParseCallback {
     }
 
     public void release() {
-        App.removeCallbacks(runnable);
-        if (engine == null) return;
         player.removeListener(listener);
+        App.removeCallbacks(runnable);
+        releaseDanmakuController();
+        if (engine == null) return;
         engine.release();
         engine = null;
         player = null;
@@ -224,6 +225,7 @@ public class PlayerManager implements ParseCallback {
     }
 
     public void setDanmakuController(DanmakuController controller) {
+        releaseDanmakuController();
         danmakuController = controller;
         danmakuController.setOkHttpClient(OkHttp.player());
         danmakuController.setConfig(DanmakuSetting.getConfig());
@@ -386,6 +388,12 @@ public class PlayerManager implements ParseCallback {
         if (spec != null) spec.setDanmaku(item);
         if (item.isEmpty()) danmakuController.clearItems();
         else danmakuController.setDataSource(Uri.parse(item.getRealUrl()));
+    }
+
+    private void releaseDanmakuController() {
+        if (danmakuController == null) return;
+        danmakuController.release();
+        danmakuController = null;
     }
 
     public void addDanmaku(Danmaku item) {
